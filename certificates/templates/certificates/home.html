@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOME</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        td:nth-child(4) {
+            white-space: nowrap;
+        }
+        .action-link {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .action-link:hover {
+            text-decoration: underline;
+        }
+        .print-btn {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the Skoolflyx Certificates System</h1>
+    <ul>
+        <li><a href="{% url 'create_school' %}">Create School</a></li>
+        <li><a href="{% url 'create_student' %}">Create Student</a></li>
+        <li><a href="{% url 'generate_certificate' student_id=1 %}">Generate Certificate (Example)</a></li>
+        <li><a href="{% url 'verify_certificate' %}">Verify Certificate</a></li>
+        <li><a href="{% url 'certificate_list' %}">Certificate List</a></li>
+    </ul>
+</body>
+</html>

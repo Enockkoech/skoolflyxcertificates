@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        td:nth-child(4) {
+            white-space: nowrap;
+        }
+        .action-link {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .action-link:hover {
+            text-decoration: underline;
+        }
+        .print-btn {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Certificate List</h2>
+        <form method="get" action="">
+            <div class="form-row">
+                <div class="col">
+                    <label for="school_name">School Name:</label>
+                    <input type="text" class="form-control" id="school_name" name="school_name">
+                </div>
+                <div class="col">
+                    <label for="year">Year:</label>
+                    <input type="text" class="form-control" id="year" name="year">
+                </div>
+                <div class="col">
+                    <button type="submit" class="btn btn-primary mt-4">Filter</button>
+                </div>
+            </div>
+        </form>
+
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">Certificate Number</th>
+                    <th scope="col">Student Name</th>
+                    <th scope="col">School Name</th>
+                    <th scope="col">Date Created</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for certificate in certificates %}
+                    <tr>
+                        <td>{{ certificate.certificate_number }}</td>
+                        <td>{{ certificate.first_name }} {{ certificate.second_name }}</td>
+                        <td>{{ certificate.school.name }}</td>
+                        <td>{{ certificate.date_created }}</td>
+                        <td><a href="{% url 'generate_certificate' certificate.id %}" class="action-link">Download</a></td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="5">No certificates found</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <button class="btn btn-primary print-btn" onclick="window.print()">Print</button>
+        <p><a href="{% url 'home' %}" class="btn btn-secondary mt-3">Back to Home</a></p>
+    </div>
+</body>
+</html>

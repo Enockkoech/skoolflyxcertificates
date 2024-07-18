@@ -1,0 +1,188 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Validate Certificate</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .result.success {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+        .result.error {
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Validate Certificate</h2>
+        <form id="validateForm" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="certificate_number">Certificate Number:</label>
+                <input type="text" id="certificate_number" name="certificate_number" required>
+            </div>
+            <button type="submit">Validate</button>
+        </form>
+        <div id="result" class="result" style="display: none;"></div>
+    </div>
+
+    <script>
+        document.getElementById('validateForm').onsubmit = function(e) {
+            e.preventDefault();
+            var certificateNumber = document.getElementById('certificate_number').value;
+            fetch('{% url "verify_certificate" %}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: 'certificate_number=' + certificateNumber
+            })
+            .then(response => response.json())
+            .then(data => {
+                var resultDiv = document.getElementById('result');
+                resultDiv.style.display = 'block';
+                if (data.valid) {
+                    resultDiv.className = 'result success';
+                    resultDiv.innerHTML = `<p>Certificate is valid.</p><p>Student Name: ${data.student_name}</p><p>Date Issued: ${data.date_issued}</p>`;
+                } else {
+                    resultDiv.className = 'result error';
+                    resultDiv.innerHTML = `<p>${data.error}</p>`;
+                }
+            });
+        }
+    </script>
+</body>
+</html> -->
+
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Verify Certificate</title>
+</head>
+<body>
+    <h2>Verify Certificate</h2>
+    <form method="get" action="">
+        <label for="certificate_number">Certificate Number:</label>
+        <input type="text" id="certificate_number" name="certificate_number">
+        <button type="submit">Verify</button>
+    </form>
+    {% if valid is not None %}
+        {% if valid %}
+            <p style="color: green;">Certificate is valid.</p>
+            <p>Student: {{ student.first_name }} {{ student.second_name }}</p>
+            <p>Date Issued: {{ student.date_created }}</p>
+        {% else %}
+            <p style="color: red;">Search the Certificate Number.</p>
+        {% endif %}
+    {% endif %}
+    <p><a href="{% url 'home' %}">Back to Home</a></p>
+</body>
+</html>
+ -->
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Certificate</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Verify Certificate</h1>
+        <form id="verify-form" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="certificate_number">Certificate Number</label>
+                <input type="text" class="form-control" id="certificate_number" name="certificate_number" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Verify</button>
+        </form>
+        <div id="result" class="mt-4"></div>
+    </div>
+    
+    <script>
+        document.getElementById('verify-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var form = this;
+            var formData = new FormData(form);
+
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRFToken': formData.get('csrfmiddlewaretoken')
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                var resultDiv = document.getElementById('result');
+                if (data.valid) {
+                    resultDiv.innerHTML = `
+                        <div class="alert alert-success">
+                            <strong>Certificate is valid!</strong><br>
+                            Student Name: ${data.student_name}<br>
+                            Certificate Number: ${data.certificate_number}<br>
+                            Date Issued: ${data.date_issued}
+                        </div>
+                    `;
+                } else {
+                    resultDiv.innerHTML = `
+                        <div class="alert alert-danger">
+                            <strong>${data.error}</strong>
+                        </div>
+                    `;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
