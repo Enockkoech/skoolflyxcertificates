@@ -94,7 +94,7 @@ WSGI_APPLICATION = 'school_certificates.wsgi.application'
 
 # DATABASES["default"] = dj_database_url.parse("DATABASE_URL")
 DATABASES = {
-    'default': dj_database_url.config(default ='postgresql://school_certificates_db_user:atRrh77Oifk1iELN0ENmlPzRMDySl9YA@skoolflyxcertificates.onrender.com/school_certificates_db')
+    'default': dj_database_url.config(default ='postgresql://school_certificates_db_user:atRrh77Oifk1iELN0ENmlPzRMDySl9YA@skoolflyxcertificates.onrender.com:5432/school_certificates_db')
 }
 
 # Password validation
