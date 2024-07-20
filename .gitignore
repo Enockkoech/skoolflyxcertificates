@@ -1,0 +1,37 @@
+# Python
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.python-version
+
+# Django
+*.log
+db.sqlite3
+media/
+staticfiles/
+
+# Environment
+.env
+.env.*
+venv/
+venv.bak/
+venv.*
+
+# Render-specific
+render/
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Mac
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
