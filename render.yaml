@@ -63,6 +63,5 @@ services:
 
 databases:
   - name: school-certificates-db
-    postgresVersion: 13
     region: oregon
     
