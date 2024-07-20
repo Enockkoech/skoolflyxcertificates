@@ -13,10 +13,7 @@ from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
 
-@login_required
 def home(request):
-    if not request.user.is_superuser:
-        return HttpResponseForbidden("You are not authorized to access this page.")
     return render(request, 'certificates/home.html')
 
 def create_school(request):
