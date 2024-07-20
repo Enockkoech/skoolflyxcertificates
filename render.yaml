@@ -41,6 +41,6 @@ services:
           name: school-certificates-db
           property: connectionString
       - key: SECRET_KEY
-        generateValue: true
+        generateValue: django-insecure-y6(m_0ns+jnm3st*u^&ro$ejxy3rwwn@=bwwon2d7mtm18t@q!
       - key: WEB_CONCURRENCY
         value: 4
