@@ -1,22 +1,26 @@
-databases:
-  - name: skoolfyxdb
-    plan: free
-    databaseName: skoolfyxdb
-    user: skoolfyxdb_user
-
 services:
   - type: web
-    plan: free
-    name: mysite
-    runtime: python
-    buildCommand: "./build.sh"
-    startCommand: "python -m gunicorn school_certificates.asgi:application -k uvicorn.workers.UvicornWorker"
+    name: school-certificates
+    env: python
+    buildCommand: "pip install -r requirements.txt && python manage.py collectstatic --noinput"
+    startCommand: "gunicorn school_certificates.wsgi:application --preload --bind 0.0.0.0:$PORT"
     envVars:
+      - key: DJANGO_SECRET_KEY
+        value: <your-secret-key>
       - key: DATABASE_URL
         fromDatabase:
-          name: skoolfyxdb
+          name: school-certificates-db
           property: connectionString
-      - key: SECRET_KEY
-        generateValue: true
-      - key: WEB_CONCURRENCY
-        value: 4
+      - key: DJANGO_SETTINGS_MODULE
+        value: school_certificates.settings.production
+    databases:
+      - name: school-certificates-db
+
+databases:
+  - name: school-certificates-db
+    postgresVersion: 13
+    region: oregon
+    disk:
+      sizeGB: 10
+    ipAllowList:
+      - 0.0.0.0/0
