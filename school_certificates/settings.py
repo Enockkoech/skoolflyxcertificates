@@ -94,7 +94,7 @@ WSGI_APPLICATION = 'school_certificates.wsgi.application'
 
 # DATABASES["default"] = dj_database_url.parse("DATABASE_URL")
 DATABASES = {
-    'default': dj_database_url.config(default ='postgresql://schoolcertificatesdb_user:VsXPTy7ElUuNUOAxnewLPfk0Q1iJW3ER@dpg-cqdrn3o8fa8c73dqt4ag-a/schoolcertificatesdb')
+    'default': dj_database_url.config(default ='postgresql://schoolcertificatesdb_user:VsXPTy7ElUuNUOAxnewLPfk0Q1iJW3ER@dpg-cqdrn3o8fa8c73dqt4ag-a.oregon-postgres.render.com/schoolcertificatesdb')
 }
 
 # Password validation
@@ -140,8 +140,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 # Default primary key field type
