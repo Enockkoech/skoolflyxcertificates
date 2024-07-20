@@ -13,8 +13,6 @@ services:
           property: connectionString
       - key: DJANGO_SETTINGS_MODULE
         value: school_certificates.settings.production
-    databases:
-      - name: school-certificates-db
 
 databases:
   - name: school-certificates-db
