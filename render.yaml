@@ -23,24 +23,46 @@
 #     ipAllowList:
 #       - 0.0.0.0/0
 
-databases:
-  - name: mysitedb
-    plan: free
-    databaseName: school-certificates-db
-    user: mysite
+# databases:
+#   - name: mysitedb
+#     plan: free
+#     databaseName: school-certificates-db
+#     user: mysite
+
+# services:
+#   - type: web
+#     plan: free
+#     name: mysite
+#     runtime: python
+#     buildCommand: "./build.sh"
+#     startCommand: "python -m gunicorn school_certificates.asgi:application"
+#       - key: DATABASE_URL
+#         fromDatabase:
+#           name: school-certificates-db
+#           property: connectionString
+#       - key: SECRET_KEY
+#         generateValue: true
+#       - key: WEB_CONCURRENCY
+#         value: 4
 
 services:
   - type: web
-    plan: free
-    name: mysite
-    runtime: python
-    buildCommand: "./build.sh"
-    startCommand: "python -m gunicorn school_certificates.asgi:application"
+    name: school-certificates
+    env: python
+    buildCommand: "pip install -r requirements.txt && python manage.py collectstatic --noinput"
+    startCommand: "gunicorn school_certificates.wsgi:application --preload --bind 0.0.0.0:$PORT"
+    envVars:
+      - key: DJANGO_SECRET_KEY
+        value: your-secret-key  # Replace with your actual Django secret key
       - key: DATABASE_URL
         fromDatabase:
           name: school-certificates-db
           property: connectionString
-      - key: SECRET_KEY
-        generateValue: "django-insecure-y6(m_0ns+jnm3st*u^&ro$ejxy3rwwn@=bwwon2d7mtm18t@q!"
-      - key: WEB_CONCURRENCY
-        value: 4
+      - key: DJANGO_SETTINGS_MODULE
+        value: school_certificates.settings.production
+
+databases:
+  - name: school-certificates-db
+    postgresVersion: 13
+    region: oregon
+    
