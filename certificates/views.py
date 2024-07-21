@@ -79,13 +79,6 @@ def generate_certificate(request, student_id):
         return HttpResponse('We had some errors <pre>' + html + '</pre>')
     return response
 
-# def verify_certificate(request):
-#     certificate_number = request.GET.get('certificate_number')
-#     try:
-#         student = Student.objects.get(certificate_number=certificate_number)
-#         return render(request, 'certificates/verify_certificate.html', {'student': student, 'valid': True})
-#     except Student.DoesNotExist:
-#         return render(request, 'certificates/verify_certificate.html', {'valid': False})
 
 def verify_certificate(request):
     if request.method == 'POST':
