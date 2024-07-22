@@ -72,7 +72,7 @@ def generate_certificate(request, student_id):
 
     html = render_to_string('certificates/certificate.html', context)
     response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = f'attachment; filename="certificate_{student.certificate_number}.pdf"'
+    response['Content-Disposition'] = f'attachment; filename="{student.first_name} {student.second_name}-Certificate.pdf"'
     pisa_status = pisa.CreatePDF(html, dest=response)
 
 
@@ -80,7 +80,7 @@ def generate_certificate(request, student_id):
     if pisa_status.err:
         return HttpResponse('We had some errors <pre>' + html + '</pre>')
     return response
-    return HttpResponseRedirect(reverse('certificate_list'))
+    return render('certificate_list')
     
 
 
