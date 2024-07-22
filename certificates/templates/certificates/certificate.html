@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -133,8 +133,141 @@
     </div>
     <div class="footer">
         <p>This certificate was issued without any erasure or alteration whatsoever.</p>
-        <p>Parents May Check validity by scanning the QR code above or visit https://skoolflyxcertificates.onrender.com/verify_certificate/verify_certificate and search the sertificate number.</p>
+        <p>Parents May Check validity by scanning the QR code above or visit https://skoolflyxcertificates.onrender.com/verify_certificate and search the sertificate number.</p>
     </div>
    
+</body>
+</html>
+ -->
+
+ <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate</title>
+    <style>
+        @font-face {
+            font-family: 'Lucida Calligraphy';
+            src: local('Lucida Calligraphy'), url('path/to/Lucida-Calligraphy.woff2') format('woff2');
+        }
+        body {
+            font-family: 'Lucida', sans-serif;
+            margin: 20px;
+        }
+        .header {
+            text-align: center;
+        }
+        .logo {
+            width: 100px;
+            height: auto;
+        }
+        .school-name {
+            font-size: 28px;
+            color: red;
+            font-weight: bold;
+        }
+        .certificate-title {
+            font-size: 24px;
+            color: brickred;
+            font-weight: bold;
+            font-style: italic;
+            font-family: 'Lucida Calligraphy', 'Lucida', sans-serif;
+            margin-top: 20px;
+        }
+        .profile-pic {
+            width: 100px;
+            height: auto;
+            border-radius: 50%;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+        }
+        .learning-areas-title {
+            color: red;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: underline;
+            font-style: italic;
+            font-size: 20px;
+        }
+        .learning-areas {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        .learning-areas li {
+            text-align: left;
+        }
+        .signatures {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+        .signature-left, .signature-right {
+            text-align: left;
+        }
+        .footer {
+            font-size: 10px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .qr-code {
+            display: block;
+            margin: 20px auto;
+            width: 100px;
+            height: 100px;
+            text-align: center;
+        }
+        .issue-date {
+            text-align: center;
+            margin-top: 5px;
+            font-size: 10px;
+        }
+        .certificate-number {
+            text-align: center;
+            color: green;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .certify-text {
+            font-size: 18px;
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1 class="school-name">{{ school.name }}</h1>
+        <img src="data:image/png;base64,{{ school_logo }}" class="logo">
+        <h3>{{ school.motto }}</h3>
+        <h2 class="certificate-title"><em>Certificate of Completion</em></h2>
+    </div>
+    <div class="content">
+        <img src="data:image/png;base64,{{ profile_picture }}" class="profile-pic">
+        <p class="certify-text">This is to certify that <strong>{{ student.first_name }} {{ student.second_name }}</strong> successfully completed pre-primary education at <strong>{{ school.name }}</strong> and thus merited to be promoted to grade 1.</p>
+        <h3 class="learning-areas-title">Learning Areas</h3>
+        <ul class="learning-areas">
+            <li>Language and Communication</li>
+            <li>Mathematics</li>
+            <li>Environment</li>
+            <li>Psychomotor (physical activity learning) and creative (Music, Art and Crafts)</li>
+            <li>Religion</li>
+        </ul>
+    </div>
+    <div class="certificate-number">
+        Certificate Number: {{ student.certificate_number }}
+    </div>
+    <div class="qr-code">
+        <img src="data:image/png;base64,{{ qr_code }}">
+    </div>
+    <div class="issue-date">
+        Printed On: {{ student.date_created }}
+    </div>
+    <div class="footer">
+        <p>This certificate was issued without any erasure or alteration whatsoever.</p>
+        <p>Parents May Check validity by scanning the QR code above or visit https://skoolflyxcertificates.onrender.com/verify_certificate and search the certificate number.</p>
+    </div>
 </body>
 </html>
