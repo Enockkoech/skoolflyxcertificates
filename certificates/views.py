@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, reverse
 from .models import School, Student
 from .forms import SchoolForm, StudentForm
 from django.http import HttpResponse
@@ -11,7 +11,7 @@ import base64
 from xhtml2pdf import pisa
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseForbidden
+from django.http import HttpResponseForbidden, HttpResponseRedirect
 
 def home(request):
     return render(request, 'certificates/home.html')
@@ -75,9 +75,13 @@ def generate_certificate(request, student_id):
     response['Content-Disposition'] = f'attachment; filename="certificate_{student.certificate_number}.pdf"'
     pisa_status = pisa.CreatePDF(html, dest=response)
 
+
+
     if pisa_status.err:
         return HttpResponse('We had some errors <pre>' + html + '</pre>')
     return response
+    return HttpResponseRedirect(reverse('certificate_list'))
+    
 
 
 def verify_certificate(request):
