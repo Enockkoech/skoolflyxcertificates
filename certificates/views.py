@@ -12,6 +12,7 @@ from xhtml2pdf import pisa
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden, HttpResponseRedirect
+import pdfkit
 
 def home(request):
     return render(request, 'certificates/home.html')
@@ -81,7 +82,6 @@ def generate_certificate(request, student_id):
         return HttpResponse('We had some errors <pre>' + html + '</pre>')
     return response
     return render('certificate_list')
-    
 
 
 def verify_certificate(request):
