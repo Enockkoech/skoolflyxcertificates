@@ -12,7 +12,6 @@ from xhtml2pdf import pisa
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden, HttpResponseRedirect
-import pdfkit
 
 def home(request):
     return render(request, 'certificates/home.html')
