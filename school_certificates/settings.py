@@ -90,9 +90,9 @@ DATABASES = {
     }
 }
 
-# database_url = os.environ.get('DATABASE_URL')
+database_url = os.environ.get('DATABASE_URL')
 
-# DATABASES["default"] = dj_database_url.parse(database_url)
+DATABASES["default"] = dj_database_url.parse(database_url)
 # DATABASES = {
 #     'default': dj_database_url.config(default ='postgresql://schoolcertificatesdb_user:VsXPTy7ElUuNUOAxnewLPfk0Q1iJW3ER@dpg-cqdrn3o8fa8c73dqt4ag-a.oregon-postgres.render.com/schoolcertificatesdb')
 # }
