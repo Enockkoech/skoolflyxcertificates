@@ -10,7 +10,9 @@ urlpatterns = [
     path('generate_certificate/<int:student_id>/', views.generate_certificate, name='generate_certificate'),
     path('verify_certificate/', views.verify_certificate, name='verify_certificate'),
     path('certificate_list/', views.certificate_list, name='certificate_list'),
-]
+] 
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    # Serve media files during development
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
