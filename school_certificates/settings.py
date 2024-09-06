@@ -95,7 +95,7 @@ database_url = os.environ.get('DATABASE_URL')
 DATABASES["default"] = dj_database_url.parse(database_url)
 
 # DATABASES = {
-#     'default': dj_database_url.config(default ='postgresql://schoolcertificatesdb_user:VsXPTy7ElUuNUOAxnewLPfk0Q1iJW3ER@dpg-cqdrn3o8fa8c73dqt4ag-a.oregon-postgres.render.com/schoolcertificatesdb')
+#     'default': dj_database_url.config(default ='postgresql://schoolcertificates_user:gRVHC8ahsjj5K01vv1412SsCvnawXPcr@dpg-crckktrv2p9s73chjmag-a.oregon-postgres.render.com/schoolcertificates')
 # }
 
 # Password validation
