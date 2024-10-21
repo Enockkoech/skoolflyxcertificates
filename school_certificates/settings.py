@@ -95,9 +95,9 @@ DATABASES = {
 
 # DATABASES["default"] = dj_database_url.parse(database_url)
 
-DATABASES = {
-    'default': dj_database_url.config(default ='postgresql://schoolcertificates_user:gRVHC8ahsjj5K01vv1412SsCvnawXPcr@dpg-crckktrv2p9s73chjmag-a.oregon-postgres.render.com/schoolcertificates')
-}
+# DATABASES = {
+#     'default': dj_database_url.config(default ='postgresql://schoolcertificates_user:gRVHC8ahsjj5K01vv1412SsCvnawXPcr@dpg-crckktrv2p9s73chjmag-a.oregon-postgres.render.com/schoolcertificates')
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -143,20 +143,20 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # digital space settings
 
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = 'skoolflyx'
-AWS_S3_ENDPOINT_URL = 'https://skoolflyx.nyc3.digitaloceanspaces.com'  # Example: https://nyc3.digitaloceanspaces.com
-AWS_S3_REGION_NAME = 'nyc3'  # Example: 'nyc3'
-AWS_S3_SIGNATURE_VERSION = 's3v4'
+# AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+# AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+# AWS_STORAGE_BUCKET_NAME = 'skoolflyx'
+# AWS_S3_ENDPOINT_URL = 'https://skoolflyx.nyc3.digitaloceanspaces.com'  # Example: https://nyc3.digitaloceanspaces.com
+# AWS_S3_REGION_NAME = 'nyc3'  # Example: 'nyc3'
+# AWS_S3_SIGNATURE_VERSION = 's3v4'
 
-AWS_DEFAULT_ACL = None
-AWS_QUERYSTRING_AUTH = False  # Disable querystring auth to simplify URLs
+# AWS_DEFAULT_ACL = None
+# AWS_QUERYSTRING_AUTH = False  # Disable querystring auth to simplify URLs
 
-# Define the media URL where images will be stored
-MEDIA_URL = f'{AWS_S3_ENDPOINT_URL}/media/'
+# # Define the media URL where images will be stored
+# MEDIA_URL = f'{AWS_S3_ENDPOINT_URL}/media/'
 
 
 
